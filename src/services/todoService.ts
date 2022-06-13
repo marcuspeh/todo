@@ -33,7 +33,9 @@ export default class TodoService {
             throw new CustomError(errorCode.TODO_ID_INVALID)
         }
 
-        return this.todoDb.deleteTodoById(todo)
+        todo.isDeleted = true
+
+        return this.todoDb.saveTodo(todo)
     }
 
     public async updateTodo(todoId: string, task: string): Promise<Todo> {
@@ -55,7 +57,7 @@ export default class TodoService {
             throw new CustomError(errorCode.TODO_ID_INVALID)
         }
 
-        todo.done = true
+        todo.isDone = true
         await this.todoDb.saveTodo(todo)
         return todo
     }
@@ -67,7 +69,7 @@ export default class TodoService {
             throw new CustomError(errorCode.TODO_ID_INVALID)
         }
 
-        todo.done = false
+        todo.isDone = false
         await this.todoDb.saveTodo(todo)
         return todo
     }

@@ -7,7 +7,6 @@ export interface ITodoDb {
     getAllDone: () => Promise<Todo[]>
     getTodoById: (todoId: string) => Promise<Todo>
     createTodo: (task: string) => Promise<Todo>
-    deleteTodoById: (todo: Todo) => Promise<void>
     saveTodo: (todo: Todo) => Promise<void>
 }
 
@@ -16,7 +15,8 @@ export class TodoDb implements ITodoDb {
     
     public async getAllTodo(): Promise<Todo[]> {
         const todos: Todo[] = await this.todoRepo
-            .createQueryBuilder()
+            .createQueryBuilder('todo')
+            .where("todo.isDeleted = false")
             .getMany()
 
         return todos
@@ -25,7 +25,8 @@ export class TodoDb implements ITodoDb {
     public async getAllUndone(): Promise<Todo[]> {
         const todos: Todo[] = await this.todoRepo
             .createQueryBuilder('todo')
-            .where('todo.done = :status', { status: false })
+            .where('todo.isDone = :status', { status: false })
+            .andWhere("todo.isDeleted = false")
             .getMany()
 
         return todos
@@ -34,7 +35,8 @@ export class TodoDb implements ITodoDb {
     public async getAllDone(): Promise<Todo[]> {
         const todos: Todo[] = await this.todoRepo
             .createQueryBuilder('todo')
-            .where('todo.done = :status', { status: true })
+            .where('todo.isDone = :status', { status: true })
+            .andWhere("todo.isDeleted = false")
             .getMany()
         
         return todos
@@ -44,6 +46,7 @@ export class TodoDb implements ITodoDb {
         const todo: Todo = await this.todoRepo
             .createQueryBuilder('todo')
             .where("todo.id = :id", { id: todoId })
+            .andWhere("todo.isDeleted = false")
             .getOne()
 
         return todo
@@ -54,10 +57,6 @@ export class TodoDb implements ITodoDb {
         await this.todoRepo.save(todo)
 
         return todo
-    }
-
-    public async deleteTodoById(todo: Todo): Promise<void> {                   
-        await this.todoRepo.delete(todo)
     }
 
     public async saveTodo(todo: Todo): Promise<void> {

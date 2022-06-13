@@ -9,6 +9,7 @@ export const errorCode = {
     /* Generic error code */
     UNHANDLED_ERROR: "E0000",
     INVALID_REQUEST_BODY: "E0001",
+    ENTITY_VALIDATION_ERROR: "E0002",
 
     /* Todo error code */
     TODO_ID_INVALID: "E0100"
