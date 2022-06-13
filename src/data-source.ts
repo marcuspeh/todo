@@ -3,6 +3,7 @@ import { DataSource } from 'typeorm'
 
 import Todo from './entity/todo'
 import User from './entity/user'
+import Token from './entity/token'
 
 
 require('dotenv').config()
@@ -15,7 +16,8 @@ export const dataSource = new DataSource({
   database: process.env.DB_DATABASE,
   entities: [
     Todo,
-    User
+    User,
+    Token,
     ],
   synchronize: false,
   logging: false,

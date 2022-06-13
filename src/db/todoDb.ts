@@ -53,7 +53,9 @@ export class TodoDb implements ITodoDb {
     }
 
     public async createTodo(task: string): Promise<Todo> {
-        const todo = this.todoRepo.create({ task: task })
+        const todo = this.todoRepo.create({ 
+            task: task 
+        })
         await this.todoRepo.save(todo)
 
         return todo

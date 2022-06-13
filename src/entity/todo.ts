@@ -10,13 +10,13 @@ export default class Todo {
 
     @IsDefined()
     @IsString()
-    @Column({length: 255,})
+    @Column({ length: 255 })
     task: string
 
-    @Column({default: false})
+    @Column({ default: false })
     isDone: boolean
 
-    @Column({default: false})
+    @Column({ default: false })
     isDeleted: boolean
 
     @CreateDateColumn()

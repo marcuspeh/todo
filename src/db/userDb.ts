@@ -1,6 +1,5 @@
 import User from "../entity/user"
 import { dataSource } from "../data-source"
-import { plainToClass } from "class-transformer"
 
 export interface IUserDb {
     getUserByEmail: (email: string) => Promise<User>
@@ -21,12 +20,12 @@ export class UserDb implements IUserDb {
     }
 
     public async createUser(name: string, email: string, passwordHash: string): Promise<User> {
-        const user: User = plainToClass(User, {
+        const user: User = await this.userRepo.create({ 
             name: name,
             email: email,
             password: passwordHash
-        }) 
-        
+        })
+
         const savedUser: User = await this.userRepo.save(user)
 
         return savedUser

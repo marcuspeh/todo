@@ -5,6 +5,7 @@
     - 01: Todo
     - 02: Crypto
     - 03: User
+    - 04. Token
 - Next 2 digits: Start with 00 and just count up
 */
 export const errorCode = {
@@ -27,4 +28,9 @@ export const errorCode = {
     EMAIL_EXISTS: "E0302",
     PASSWORD_REQUIREMENT_NOT_MET: "E0303", 
     USER_NOT_FOUND: "E0304",
+
+    /* Token error code */
+    TOKEN_EXPIRED: "E0400",
+    TOKEN_INVALID: "E0401",
+    TOKEN_DOES_NOT_EXISTS: "E0402",
 }

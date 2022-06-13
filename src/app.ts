@@ -1,3 +1,4 @@
+import cookieParser from 'koa-cookie'
 import Koa from 'koa'
 import bodyParser from 'koa-bodyparser'
 
@@ -19,6 +20,7 @@ app.use(async (ctx: Koa.Context, next: () => Promise<any>) => {
 
 
 // Middleware
+app.use(cookieParser())
 app.use(bodyParser())
 
 app.use(routes.routes())

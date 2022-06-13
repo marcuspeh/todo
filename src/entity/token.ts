@@ -1,27 +1,31 @@
-import { IsDefined, IsEmail, IsString, validate } from "class-validator"
+import { IsDefined, IsEnum, validate } from "class-validator"
 import CustomError from "../errors/customError"
 import { errorCode } from "../errors/errorCode"
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, BeforeUpdate, BeforeInsert } from "typeorm"
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, BeforeUpdate, BeforeInsert, Index, ManyToOne, JoinColumn } from "typeorm"
+import { TOKEN_TYPE } from "./enum/tokenType"
+import User from "./user"
 
 @Entity()
-export default class User {
+export default class Token {
     @PrimaryGeneratedColumn('uuid')
     id: string
 
     @IsDefined()
-    @IsString()
-    @Column({ length: 255 })
-    name: string
+    @ManyToOne(type => User, { eager: true })
+    @JoinColumn()
+    user: User
 
     @IsDefined()
-    @IsEmail()
-    @Column({ unique:true })
-    email: string
+    @IsEnum(TOKEN_TYPE)
+    @Column({ type: "enum", enum: TOKEN_TYPE })
+    type: TOKEN_TYPE
+
+    @Column({ default: true })
+    isValid: boolean
 
     @IsDefined()
-    @IsString()
     @Column()
-    password: string
+    expiryDate: Date
 
     @CreateDateColumn()
     public createAt: Date
