@@ -1,15 +1,15 @@
-import User from "../entity/user";
-import { dataSource } from "../data-source";
-import { plainToClass } from "class-transformer";
+import User from "../entity/user"
+import { dataSource } from "../data-source"
+import { plainToClass } from "class-transformer"
 
 export interface IUserDb {
     getUserByEmail: (email: string) => Promise<User>
     createUser: (name: string, email: string, passwordHash: string) => Promise<User>
-    saveUser: (user: User) => Promise<void>
+    saveUser: (user: User) => Promise<User>
 }
 
 export class UserDb implements IUserDb {
-    userRepo = dataSource.getRepository(User);
+    userRepo = dataSource.getRepository(User)
     
     public async getUserByEmail(email: string): Promise<User> {
         const user: User = await this.userRepo
@@ -27,12 +27,13 @@ export class UserDb implements IUserDb {
             password: passwordHash
         }) 
         
-        await this.userRepo.save(user)
+        const savedUser: User = await this.userRepo.save(user)
 
-        return user
+        return savedUser
     }
 
-    public async saveUser(user: User): Promise<void> {
-        await this.userRepo.save(user)
+    public async saveUser(user: User): Promise<User> {
+        const savedUser: User = await this.userRepo.save(user)
+        return savedUser
     }
 }

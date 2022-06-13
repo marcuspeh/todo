@@ -1,29 +1,29 @@
-import { IsDefined, IsString, validate } from "class-validator";
-import CustomError from "../errors/customError";
-import { errorCode } from "../errors/errorCode";
+import { IsDefined, IsString, validate } from "class-validator"
+import CustomError from "../errors/customError"
+import { errorCode } from "../errors/errorCode"
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, BeforeUpdate, BeforeInsert } from "typeorm"
 
 @Entity()
 export default class Todo {
     @PrimaryGeneratedColumn()
-    id: number;
+    id: number
 
     @IsDefined()
     @IsString()
     @Column({length: 255,})
-    task: string;
+    task: string
 
     @Column({default: false})
-    isDone: boolean;
+    isDone: boolean
 
     @Column({default: false})
-    isDeleted: boolean;
+    isDeleted: boolean
 
     @CreateDateColumn()
-    public createAt: Date;
+    public createAt: Date
 
     @UpdateDateColumn()
-    public updatedAt: Date;
+    public updatedAt: Date
 
     @BeforeUpdate()
     @BeforeInsert()

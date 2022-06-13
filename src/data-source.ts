@@ -23,4 +23,4 @@ export const dataSource = new DataSource({
     "src/migration/*.ts"
   ],
   subscribers: [],
-});
+})

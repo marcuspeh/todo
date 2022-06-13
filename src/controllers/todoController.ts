@@ -33,7 +33,7 @@ class TodoController {
     }
 
     public async getTodoById(ctx: Context) {
-        const apiDto = await dtoValidator.inputValidate(todoIdDTO, ctx.request.body);
+        const apiDto = await dtoValidator.inputValidate(todoIdDTO, ctx.request.body)
         const todo: Todo = await this.todoService.getTodoById(apiDto.id)
 
         ctx.body = {
@@ -42,7 +42,7 @@ class TodoController {
     }
 
     public async createTodo(ctx: Context) {
-        const apiDto = await dtoValidator.inputValidate(newTodoDTO, ctx.request.body);
+        const apiDto = await dtoValidator.inputValidate(newTodoDTO, ctx.request.body)
         const todo: Todo = await this.todoService.createTodo(apiDto.task)
 
         ctx.body = {
@@ -51,7 +51,7 @@ class TodoController {
     }
 
     public async deleteTodo(ctx: Context) {    
-        const apiDto = await dtoValidator.inputValidate(todoIdDTO, ctx.request.body);
+        const apiDto = await dtoValidator.inputValidate(todoIdDTO, ctx.request.body)
         await this.todoService.deleteTodo(apiDto.id)
     
         ctx.body = {
@@ -60,7 +60,7 @@ class TodoController {
     }
 
     public async updateTodo(ctx: Context) {
-        const apiDto = await dtoValidator.inputValidate(updateTodoDTO, ctx.request.body);
+        const apiDto = await dtoValidator.inputValidate(updateTodoDTO, ctx.request.body)
         const todo:Todo = await this.todoService.updateTodo(apiDto.id, apiDto.task)
        
         ctx.body = {
@@ -69,7 +69,7 @@ class TodoController {
     }
 
     public async markTodoAsDone(ctx: Context) {  
-        const apiDto = await dtoValidator.inputValidate(todoIdDTO, ctx.request.body);
+        const apiDto = await dtoValidator.inputValidate(todoIdDTO, ctx.request.body)
         const todo = await this.todoService.markAsDoneById(apiDto.id)
 
         ctx.body = {
@@ -78,7 +78,7 @@ class TodoController {
     }
 
     public async markTodoUndone(ctx: Context) {
-        const apiDto = await dtoValidator.inputValidate(todoIdDTO, ctx.request.body);
+        const apiDto = await dtoValidator.inputValidate(todoIdDTO, ctx.request.body)
         const todo = await this.todoService.markAsUndoneById(apiDto.id)
 
         ctx.body = {

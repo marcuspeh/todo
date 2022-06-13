@@ -18,6 +18,7 @@ export default class CryptoService {
         const password: string = await rsaServiceHelper.decrypt(encryptedPassword)
         const passwordHash: string = await passwordServiceHelper.hashPassword(password)
         user = await this.userDb.createUser(name, email, passwordHash)
+        user.password = undefined
 
         return user
     }
@@ -31,6 +32,7 @@ export default class CryptoService {
         
         const password: string = await rsaServiceHelper.decrypt(encryptedPassword)
         await passwordServiceHelper.checkPassword(password, user.password)
+        user.password = undefined
 
         return user
     }

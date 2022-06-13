@@ -1,33 +1,33 @@
-import { IsDefined, IsEmail, IsString, validate } from "class-validator";
-import CustomError from "../errors/customError";
-import { errorCode } from "../errors/errorCode";
+import { IsDefined, IsEmail, IsString, validate } from "class-validator"
+import CustomError from "../errors/customError"
+import { errorCode } from "../errors/errorCode"
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, BeforeUpdate, BeforeInsert } from "typeorm"
 
 @Entity()
 export default class User {
     @PrimaryGeneratedColumn('uuid')
-    id: string;
+    id: string
 
     @IsDefined()
     @IsString()
     @Column({length: 255,})
-    name: string;
+    name: string
 
     @IsDefined()
     @IsEmail()
     @Column({unique:true})
-    email: string;
+    email: string
 
     @IsDefined()
     @IsString()
     @Column()
-    password: string;
+    password: string
 
     @CreateDateColumn()
-    public createAt: Date;
+    public createAt: Date
 
     @UpdateDateColumn()
-    public updatedAt: Date;
+    public updatedAt: Date
 
     @BeforeUpdate()
     @BeforeInsert()

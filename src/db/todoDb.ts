@@ -1,4 +1,4 @@
-import { dataSource } from "../data-source";
+import { dataSource } from "../data-source"
 import Todo from "../entity/todo"
 
 export interface ITodoDb {
@@ -7,11 +7,11 @@ export interface ITodoDb {
     getAllDone: () => Promise<Todo[]>
     getTodoById: (todoId: string) => Promise<Todo>
     createTodo: (task: string) => Promise<Todo>
-    saveTodo: (todo: Todo) => Promise<void>
+    saveTodo: (todo: Todo) => Promise<Todo>
 }
 
 export class TodoDb implements ITodoDb {
-    todoRepo = dataSource.getRepository(Todo);
+    todoRepo = dataSource.getRepository(Todo)
     
     public async getAllTodo(): Promise<Todo[]> {
         const todos: Todo[] = await this.todoRepo
@@ -59,7 +59,9 @@ export class TodoDb implements ITodoDb {
         return todo
     }
 
-    public async saveTodo(todo: Todo): Promise<void> {
-        await this.todoRepo.save(todo)
+    public async saveTodo(todo: Todo): Promise<Todo> {
+        const savedTodo = await this.todoRepo.save(todo)
+
+        return savedTodo
     }
 }

@@ -1,7 +1,7 @@
-import { ITodoDb, TodoDb } from "../db/todoDb";
-import Todo from "../entity/todo";
-import CustomError from "../errors/customError";
-import { errorCode } from "../errors/errorCode";
+import { ITodoDb, TodoDb } from "../db/todoDb"
+import Todo from "../entity/todo"
+import CustomError from "../errors/customError"
+import { errorCode } from "../errors/errorCode"
 
 export default class TodoService {
     private todoDb: ITodoDb = new TodoDb()
@@ -35,7 +35,7 @@ export default class TodoService {
 
         todo.isDeleted = true
 
-        return this.todoDb.saveTodo(todo)
+        await this.todoDb.saveTodo(todo)
     }
 
     public async updateTodo(todoId: string, task: string): Promise<Todo> {
@@ -46,8 +46,7 @@ export default class TodoService {
         }
 
         todo.task = task
-        await this.todoDb.saveTodo(todo)
-        return todo
+        return await this.todoDb.saveTodo(todo)
     }
 
     public async markAsDoneById(todoId: string): Promise<Todo> {
@@ -58,8 +57,7 @@ export default class TodoService {
         }
 
         todo.isDone = true
-        await this.todoDb.saveTodo(todo)
-        return todo
+        return await this.todoDb.saveTodo(todo)
     }
 
     public async markAsUndoneById(todoId: string): Promise<Todo> {
@@ -70,7 +68,6 @@ export default class TodoService {
         }
 
         todo.isDone = false
-        await this.todoDb.saveTodo(todo)
-        return todo
+        return await this.todoDb.saveTodo(todo)
     }
 }
