@@ -18,7 +18,7 @@ export const dataSource = new DataSource({
   synchronize: false,
   logging: false,
   migrations: [
-    "src/migration/**/*.ts"
+    "src/migration/*.ts"
   ],
   subscribers: [],
 });
