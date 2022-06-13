@@ -1,7 +1,8 @@
-import 'reflect-metadata';
-import { DataSource } from 'typeorm';
+import 'reflect-metadata'
+import { DataSource } from 'typeorm'
 
-import todo from './entity/todo'
+import Todo from './entity/todo'
+import User from './entity/user'
 
 
 require('dotenv').config()
@@ -13,7 +14,8 @@ export const dataSource = new DataSource({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE,
   entities: [
-    todo
+    Todo,
+    User
     ],
   synchronize: false,
   logging: false,

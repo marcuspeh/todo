@@ -30,7 +30,7 @@ export default class TodoService {
         const todo: Todo = await this.todoDb.getTodoById(todoId)
 
         if (!todo) {
-            throw new CustomError(errorCode.TODO_ID_INVALID)
+            throw new CustomError(errorCode.TODO_NOT_FOUND)
         }
 
         todo.isDeleted = true
@@ -42,7 +42,7 @@ export default class TodoService {
         const todo: Todo = await this.todoDb.getTodoById(todoId)
 
         if (!todo) {
-            throw new CustomError(errorCode.TODO_ID_INVALID)
+            throw new CustomError(errorCode.TODO_NOT_FOUND)
         }
 
         todo.task = task
@@ -54,7 +54,7 @@ export default class TodoService {
         const todo: Todo = await this.todoDb.getTodoById(todoId)
 
         if (!todo) {
-            throw new CustomError(errorCode.TODO_ID_INVALID)
+            throw new CustomError(errorCode.TODO_NOT_FOUND)
         }
 
         todo.isDone = true
@@ -66,7 +66,7 @@ export default class TodoService {
         const todo: Todo = await this.todoDb.getTodoById(todoId)
 
         if (!todo) {
-            throw new CustomError(errorCode.TODO_ID_INVALID)
+            throw new CustomError(errorCode.TODO_NOT_FOUND)
         }
 
         todo.isDone = false
