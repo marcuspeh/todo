@@ -4,6 +4,7 @@ import { DataSource } from 'typeorm';
 import todo from './entity/todo'
 
 
+require('dotenv').config()
 export const dataSource = new DataSource({
   type: 'postgres',
   host: process.env.DB_HOST,

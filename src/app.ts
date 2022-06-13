@@ -3,7 +3,6 @@ import bodyParser from 'koa-bodyparser';
 
 import routes from './routes/index'
 
-require('dotenv').config()
 
 const app:Koa = new Koa();
 
