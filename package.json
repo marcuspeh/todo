@@ -11,7 +11,7 @@
     "start": "nodemon",
     "typeorm": "typeorm-ts-node-esm -d ./src/data-source.ts",
     "create-migration": "npm run typeorm migration:generate -n InsertTokenTable",
-    "migrate": "npm run typeorm migration:run",
+    "migration": "npm run typeorm migration:run",
     "revert": "npm run tsc && ./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:revert"
   },
   "keywords": [],
