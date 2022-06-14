@@ -25,24 +25,20 @@ const validateToken = async (ctx: Context, token: any, tokenType: TOKEN_TYPE) =>
     const tokenObject: Token = await tokenService.verifyToken(jwtPayloadModel.tokenId, jwtPayloadModel.userId, tokenType)
 
     if (tokenType === TOKEN_TYPE.USER_TOKEN) {
-        const payload = {
-            userId: tokenObject.user.id,
-            tokenId: tokenObject.id,
-            expiryDate: tokenObject.expiryDate
-        }
-
-        const meta: any = ctx.request.header.meta || {}
-        ctx.request.header.meta = { ...meta, ...payload }
+        ctx.request.header.userId = tokenObject.user.id
+        ctx.request.header.tokenId = tokenObject.id
+        ctx.request.header.expiryDate = tokenObject.expiryDate.toString()
+        
     }
     
 }
 
 const auth = async (ctx: Context, next: any) => {
-    const tokenCsrf = ctx.request.header.tonic
     const token = ctx.cookies.get("GIN")
+    const tokenCsrf = ctx.request.header.tonic
 
-    validateToken(ctx, token, TOKEN_TYPE.USER_TOKEN)
-    validateToken(ctx, tokenCsrf, TOKEN_TYPE.USER_CSRF_TOKEN)
+    await validateToken(ctx, token, TOKEN_TYPE.USER_TOKEN)
+    await validateToken(ctx, tokenCsrf, TOKEN_TYPE.USER_CSRF_TOKEN)
 
     await next()
 }

@@ -1,60 +1,70 @@
+import User from "../entity/user"
 import { dataSource } from "../data-source"
 import Todo from "../entity/todo"
 
 export interface ITodoDb {
-    getAllTodo: () => Promise<Todo[]>
-    getAllUndone: () => Promise<Todo[]>
-    getAllDone: () => Promise<Todo[]>
-    getTodoById: (todoId: string) => Promise<Todo>
-    createTodo: (task: string) => Promise<Todo>
+    getAllTodo: (userId: string) => Promise<Todo[]>
+    getAllUndone: (userId: string) => Promise<Todo[]>
+    getAllDone: (userId: string) => Promise<Todo[]>
+    getTodoById: (todoId: string, userId: string) => Promise<Todo>
+    createTodo: (task: string, user: User) => Promise<Todo>
     saveTodo: (todo: Todo) => Promise<Todo>
 }
 
 export class TodoDb implements ITodoDb {
     todoRepo = dataSource.getRepository(Todo)
     
-    public async getAllTodo(): Promise<Todo[]> {
+    public async getAllTodo(userId: string): Promise<Todo[]> {
         const todos: Todo[] = await this.todoRepo
             .createQueryBuilder('todo')
+            .leftJoinAndSelect('todo.user', 'user')
             .where("todo.isDeleted = false")
+            .andWhere("user.id = :id", { id: userId })
             .getMany()
 
         return todos
     }
 
-    public async getAllUndone(): Promise<Todo[]> {
+    public async getAllUndone(userId: string): Promise<Todo[]> {
         const todos: Todo[] = await this.todoRepo
             .createQueryBuilder('todo')
+            .leftJoinAndSelect('todo.user', 'user')
             .where('todo.isDone = :status', { status: false })
             .andWhere("todo.isDeleted = false")
+            .andWhere("user.id = :id", { id: userId })
             .getMany()
 
         return todos
     }
 
-    public async getAllDone(): Promise<Todo[]> {
+    public async getAllDone(userId: string): Promise<Todo[]> {
         const todos: Todo[] = await this.todoRepo
             .createQueryBuilder('todo')
+            .leftJoinAndSelect('todo.user', 'user')
             .where('todo.isDone = :status', { status: true })
             .andWhere("todo.isDeleted = false")
+            .andWhere("user.id = :id", { id: userId })
             .getMany()
         
         return todos
     }
 
-    public async getTodoById(todoId: string): Promise<Todo> {
+    public async getTodoById(todoId: string, userId: string): Promise<Todo> {
         const todo: Todo = await this.todoRepo
             .createQueryBuilder('todo')
-            .where("todo.id = :id", { id: todoId })
+            .leftJoinAndSelect('todo.user', 'user')
+            .where("todo.id = :todoId", { todoId: todoId })
             .andWhere("todo.isDeleted = false")
+            .andWhere("user.id = :userId", { userId: userId })
             .getOne()
 
         return todo
     }
 
-    public async createTodo(task: string): Promise<Todo> {
+    public async createTodo(task: string, user: User): Promise<Todo> {
         const todo = this.todoRepo.create({ 
-            task: task 
+            task: task,
+            user: user
         })
         await this.todoRepo.save(todo)
 

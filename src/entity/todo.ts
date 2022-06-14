@@ -1,7 +1,8 @@
 import { IsDefined, IsString, validate } from "class-validator"
 import CustomError from "../errors/customError"
 import { errorCode } from "../errors/errorCode"
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, BeforeUpdate, BeforeInsert } from "typeorm"
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, BeforeUpdate, BeforeInsert, JoinColumn, ManyToOne } from "typeorm"
+import User from "./user"
 
 @Entity()
 export default class Todo {
@@ -12,6 +13,11 @@ export default class Todo {
     @IsString()
     @Column({ length: 255 })
     task: string
+
+    @IsDefined()
+    @ManyToOne(type => User, { eager: true })
+    @JoinColumn()
+    user: User
 
     @Column({ default: false })
     isDone: boolean

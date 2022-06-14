@@ -36,4 +36,14 @@ export default class CryptoService {
 
         return user
     }
+
+    public async getUser(userId: string): Promise<User> {
+        const user: User = await this.userDb.getUserById(userId)
+
+        if (!user) {
+            throw new CustomError(errorCode.USER_NOT_FOUND, "User not found")
+        }
+
+        return user
+    }
 }

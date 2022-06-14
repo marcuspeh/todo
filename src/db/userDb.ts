@@ -3,6 +3,7 @@ import { dataSource } from "../data-source"
 
 export interface IUserDb {
     getUserByEmail: (email: string) => Promise<User>
+    getUserById: (userId: string) => Promise<User>
     createUser: (name: string, email: string, passwordHash: string) => Promise<User>
     saveUser: (user: User) => Promise<User>
 }
@@ -14,6 +15,15 @@ export class UserDb implements IUserDb {
         const user: User = await this.userRepo
             .createQueryBuilder('user')
             .where("user.email = :email", { email: email })
+            .getOne()
+
+        return user
+    }
+
+    public async getUserById(userId: string): Promise<User> {
+        const user: User = await this.userRepo
+            .createQueryBuilder('user')
+            .where("user.id = :id", { id: userId })
             .getOne()
 
         return user

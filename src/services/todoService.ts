@@ -1,3 +1,4 @@
+import User from "entity/user"
 import { ITodoDb, TodoDb } from "../db/todoDb"
 import Todo from "../entity/todo"
 import CustomError from "../errors/customError"
@@ -6,28 +7,28 @@ import { errorCode } from "../errors/errorCode"
 export default class TodoService {
     private todoDb: ITodoDb = new TodoDb()
 
-    public async getAllTodo(): Promise<Todo[]> {
-        return this.todoDb.getAllTodo()
+    public async getAllTodo(userId: string): Promise<Todo[]> {
+        return this.todoDb.getAllTodo(userId)
     }
 
-    public async getAllUndone(): Promise<Todo[]> {
-        return this.todoDb.getAllUndone()
+    public async getAllUndone(userId: string): Promise<Todo[]> {
+        return this.todoDb.getAllUndone(userId)
     }
 
-    public async getAllDone(): Promise<Todo[]> {
-        return this.todoDb.getAllDone()
+    public async getAllDone(userId: string): Promise<Todo[]> {
+        return this.todoDb.getAllDone(userId)
     }
 
-    public async getTodoById(todoId: string): Promise<Todo> {
-        return this.todoDb.getTodoById(todoId)
+    public async getTodoById(todoId: string, userId: string): Promise<Todo> {
+        return this.todoDb.getTodoById(todoId, userId)
     }
 
-    public async createTodo(task: string): Promise<Todo> {
-        return this.todoDb.createTodo(task)
+    public async createTodo(task: string, user: User): Promise<Todo> {
+        return this.todoDb.createTodo(task, user)
     }
 
-    public async deleteTodo(todoId: string): Promise<void> {
-        const todo: Todo = await this.todoDb.getTodoById(todoId)
+    public async deleteTodo(todoId: string, userId: string): Promise<void> {
+        const todo: Todo = await this.todoDb.getTodoById(todoId, userId)
 
         if (!todo) {
             throw new CustomError(errorCode.TODO_NOT_FOUND)
@@ -38,8 +39,8 @@ export default class TodoService {
         await this.todoDb.saveTodo(todo)
     }
 
-    public async updateTodo(todoId: string, task: string): Promise<Todo> {
-        const todo: Todo = await this.todoDb.getTodoById(todoId)
+    public async updateTodo(todoId: string, task: string, userId: string): Promise<Todo> {
+        const todo: Todo = await this.todoDb.getTodoById(todoId, userId)
 
         if (!todo) {
             throw new CustomError(errorCode.TODO_NOT_FOUND)
@@ -49,8 +50,8 @@ export default class TodoService {
         return await this.todoDb.saveTodo(todo)
     }
 
-    public async markAsDoneById(todoId: string): Promise<Todo> {
-        const todo: Todo = await this.todoDb.getTodoById(todoId)
+    public async markAsDoneById(todoId: string, userId: string): Promise<Todo> {
+        const todo: Todo = await this.todoDb.getTodoById(todoId, userId)
 
         if (!todo) {
             throw new CustomError(errorCode.TODO_NOT_FOUND)
@@ -60,8 +61,8 @@ export default class TodoService {
         return await this.todoDb.saveTodo(todo)
     }
 
-    public async markAsUndoneById(todoId: string): Promise<Todo> {
-        const todo: Todo = await this.todoDb.getTodoById(todoId)
+    public async markAsUndoneById(todoId: string, userId: string): Promise<Todo> {
+        const todo: Todo = await this.todoDb.getTodoById(todoId, userId)
 
         if (!todo) {
             throw new CustomError(errorCode.TODO_NOT_FOUND)

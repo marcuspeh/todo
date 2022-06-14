@@ -22,6 +22,7 @@ app.use(async (ctx: Koa.Context, next: () => Promise<any>) => {
 // Middleware
 app.use(cookieParser())
 app.use(bodyParser())
+app.proxy = true
 
 app.use(routes.routes())
 app.use(routes.allowedMethods())
