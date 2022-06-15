@@ -14,7 +14,10 @@ class UserController {
         const user: User = await this.userService.register(apiDto.name, apiDto.email, apiDto.password)
 
         ctx.body = {
-            user: user
+            user: {
+                name: user.name,
+                email: user.email
+            }
         }
     }
 
@@ -37,7 +40,10 @@ class UserController {
             sameSite: "strict"
         })
         ctx.body = {
-            user: user
+            user: {
+                name: user.name,
+                email: user.email
+            }
         }
     }
 }
