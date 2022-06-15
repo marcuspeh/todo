@@ -1,7 +1,7 @@
-import CustomError from "../errors/customError"
-import { errorCode } from "../errors/errorCode"
 import { Context } from "koa"
 import CryptoService from "../services/cryptoService"
+import { encryptionDTO, hashingDTO } from "./apiSchemas/cryptoDTO"
+import dtoValidator from "./helper/dtoValidator"
 
 class CryptoController {
     private CryptoService: CryptoService = new CryptoService()
@@ -15,7 +15,9 @@ class CryptoController {
     }
 
     public async encrypt(ctx: Context) {
-        const ciphertext = await this.CryptoService.encrypt(ctx.request.body.text)
+        const apiDto = await dtoValidator.inputValidate(encryptionDTO, ctx.request.body)
+
+        const ciphertext = await this.CryptoService.encrypt(apiDto.text)
 
         ctx.body = {
             ciphertext: ciphertext
@@ -23,7 +25,9 @@ class CryptoController {
     }
 
     public async decrypt(ctx: Context) {
-        const plaintext = await this.CryptoService.decrypt(ctx.request.body.text)
+        const apiDto = await dtoValidator.inputValidate(encryptionDTO, ctx.request.body)
+
+        const plaintext = await this.CryptoService.decrypt(apiDto.text)
 
         ctx.body = {
             plaintext: plaintext
@@ -31,7 +35,9 @@ class CryptoController {
     }
 
     public async hashPasword(ctx: Context) {
-        const passwordHash = await this.CryptoService.hashPassword(ctx.request.body.password)
+        const apiDto = await dtoValidator.inputValidate(hashingDTO, ctx.request.body)
+
+        const passwordHash = await this.CryptoService.hashPassword(apiDto.password)
 
         ctx.body = {
             passwordHash: passwordHash
@@ -39,7 +45,9 @@ class CryptoController {
     }
 
     public async checkPassword(ctx: Context) {
-        await this.CryptoService.checkPassword(ctx.request.body.password, ctx.request.body.passwordHash)
+        const apiDto = await dtoValidator.inputValidate(hashingDTO, ctx.request.body)
+
+        await this.CryptoService.checkPassword(apiDto.password, apiDto.passwordHash)
 
         ctx.body = {
             message: "Success"
