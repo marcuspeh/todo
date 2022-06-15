@@ -12,6 +12,7 @@ export const errorCode = {
     /* Generic error code */
     UNHANDLED_ERROR: "E0000",
     API_ONLY_AVAILABLE_ON_DEV: "E0001",
+    API_KEY_INVALID: "E0002",
 
     INVALID_REQUEST_BODY: "E0010",
     ENTITY_VALIDATION_ERROR: "E0011",

@@ -3,6 +3,7 @@ import Koa from 'koa'
 import bodyParser from 'koa-bodyparser'
 
 import routes from './routes/index'
+import apiKeyCheck from './middleware/apiKeyMiddleware'
 
 
 const app:Koa = new Koa()
@@ -20,6 +21,7 @@ app.use(async (ctx: Koa.Context, next: () => Promise<any>) => {
 
 
 // Middleware
+app.use(apiKeyCheck)
 app.use(cookieParser())
 app.use(bodyParser())
 app.proxy = true

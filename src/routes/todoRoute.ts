@@ -1,7 +1,7 @@
 import Router from "koa-router"
 import todoController from "../controllers/todoController"
 import { Context } from "koa"
-import auth from "../middleware/auth"
+import auth from "../middleware/authMiddleware"
 
 const router = new Router()
 
