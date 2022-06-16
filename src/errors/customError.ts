@@ -1,3 +1,5 @@
+import { errorCode } from "./errorCode"
+
 export default class CustomError extends Error {
     public status: number
     private code: string
@@ -7,6 +9,11 @@ export default class CustomError extends Error {
         super(code)
         this.code = code
         this.info = info
-        this.status = 400
+        
+        if (code == errorCode.TOKEN_DOES_NOT_EXISTS || code == errorCode.TOKEN_INVALID) {
+            this.status = 401
+        } else {
+            this.status = 400
+        }
     }
 }

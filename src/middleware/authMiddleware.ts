@@ -11,7 +11,7 @@ const tokenService: TokenService = new TokenService()
 
 const validateToken = async (ctx: Context, token: any, tokenType: TOKEN_TYPE) => {
     if (!token) {
-        throw new CustomError(errorCode.TOKEN_EXPIRED)
+        throw new CustomError(errorCode.TOKEN_DOES_NOT_EXISTS)
     }
 
     var payload;
