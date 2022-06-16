@@ -7,7 +7,7 @@ export interface ITodoDb {
     getAllUndone: (userId: string) => Promise<Todo[]>
     getAllDone: (userId: string) => Promise<Todo[]>
     getTodoById: (todoId: string, userId: string) => Promise<Todo>
-    createTodo: (task: string, user: User) => Promise<Todo>
+    createTodo: (title: string, task: string, user: User) => Promise<Todo>
     saveTodo: (todo: Todo) => Promise<Todo>
 }
 
@@ -61,8 +61,9 @@ export class TodoDb implements ITodoDb {
         return todo
     }
 
-    public async createTodo(task: string, user: User): Promise<Todo> {
+    public async createTodo(title: string, task: string, user: User): Promise<Todo> {
         const todo = this.todoRepo.create({ 
+            title: title,
             task: task,
             user: user
         })

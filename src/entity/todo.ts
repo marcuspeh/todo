@@ -12,6 +12,11 @@ export default class Todo {
     @IsDefined()
     @IsString()
     @Column({ length: 255 })
+    title: string
+
+    @IsDefined()
+    @IsString()
+    @Column()
     task: string
 
     @IsDefined()

@@ -54,7 +54,7 @@ class TodoController {
         const userId = ctx.request.header.userId.toString()
         const user: User = await this.userService.getUser(userId)
 
-        const todo: Todo = await this.todoService.createTodo(apiDto.task, user)
+        const todo: Todo = await this.todoService.createTodo(apiDto.title, apiDto.task, user)
 
         ctx.body = {
             data: todo
@@ -76,7 +76,7 @@ class TodoController {
         const apiDto = await dtoValidator.inputValidate(updateTodoDTO, ctx.request.body)
         
         const userId = ctx.request.header.userId.toString()
-        const todo:Todo = await this.todoService.updateTodo(apiDto.id, apiDto.task, userId)
+        const todo:Todo = await this.todoService.updateTodo(apiDto.id, apiDto.title, apiDto.task, userId)
        
         ctx.body = {
            data: todo

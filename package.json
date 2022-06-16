@@ -10,7 +10,7 @@
     "serve": "ts-node src/server.ts",
     "start": "nodemon",
     "typeorm": "typeorm-ts-node-esm -d ./src/data-source.ts",
-    "create-migration": "npm run typeorm migration:generate -n InsertTokenTable",
+    "create-migration": "npm run typeorm migration:generate -n AlterTodoTable",
     "migration": "npm run typeorm migration:run",
     "revert": "npm run tsc && ./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:revert"
   },

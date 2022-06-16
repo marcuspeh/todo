@@ -23,8 +23,8 @@ export default class TodoService {
         return this.todoDb.getTodoById(todoId, userId)
     }
 
-    public async createTodo(task: string, user: User): Promise<Todo> {
-        return this.todoDb.createTodo(task, user)
+    public async createTodo(title: string, task: string, user: User): Promise<Todo> {
+        return this.todoDb.createTodo(title, task, user)
     }
 
     public async deleteTodo(todoId: string, userId: string): Promise<void> {
@@ -39,14 +39,20 @@ export default class TodoService {
         await this.todoDb.saveTodo(todo)
     }
 
-    public async updateTodo(todoId: string, task: string, userId: string): Promise<Todo> {
+    public async updateTodo(todoId: string, title: string, task: string, userId: string): Promise<Todo> {
         const todo: Todo = await this.todoDb.getTodoById(todoId, userId)
 
         if (!todo) {
             throw new CustomError(errorCode.TODO_NOT_FOUND)
         }
 
-        todo.task = task
+        if (title && title.length > 0) {
+            todo.title = title
+        }
+        if (task && task.length > 0) {
+            todo.task = task
+        }
+
         return await this.todoDb.saveTodo(todo)
     }
 
