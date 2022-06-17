@@ -12,12 +12,18 @@ export function clearUserToken(): void {
 }
 
 export function getCookies(): string {
-    return `GIN=${cookies.get(USER_TOKEN)}; TONIC=${cookies.get(USER_CSRF_TOKEN)}`
+    const userToken = cookies.get(USER_TOKEN)
+    const userCsrfToken = cookies.get(USER_CSRF_TOKEN)
+    
+    if (!userToken || !userCsrfToken) {
+        return ""
+    }
+    return `GIN=${userToken}; TONIC=${userCsrfToken}`
 }
 
 export function extractErrorCode(err: any): string {
-    if (err && err.data && err.data.code) {
-        return err.data.code
+    if (err && err.data && err.data.error && err.data.error.code) {
+        return err.data.error.code
     }
     return ""
 }

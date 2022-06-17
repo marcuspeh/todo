@@ -1,11 +1,9 @@
-import Link from "next/link"
+import LoginComponment from "../components/login/loginComponment"
 
-export default function FirstPost() {
+export default function Login(props: any) {
     return (
-        <h1>
-            <Link href="/">
-                <a>here</a>
-             </Link>
-        </h1>
+        <>
+            <LoginComponment />
+        </>
         )
   }

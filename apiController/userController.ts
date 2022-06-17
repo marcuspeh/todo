@@ -5,7 +5,7 @@ import { encryptPassword } from "./helper/rsaHelper";
 
 export async function loginUser(email: string, password: string): Promise<ResponseModel> {
     try {
-        const encryptedPassword = encryptPassword(password)
+        const encryptedPassword = await encryptPassword(password)
         const result = await customAxios
             .post(process.env.BACKEND_URL + "/user/login", {
                 email: email,
@@ -25,8 +25,7 @@ export async function loginUser(email: string, password: string): Promise<Respon
 
 export async function registerUser(name: string, email: string, password: string): Promise<ResponseModel> {
     try {
-        const encryptedPassword = encryptPassword(password)
-
+        const encryptedPassword = await encryptPassword(password)
         const result = await customAxios
             .post(process.env.BACKEND_URL + "/user/register", {
                 email: email,
