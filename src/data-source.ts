@@ -9,11 +9,7 @@ import Token from './entity/token'
 require('dotenv').config()
 export const dataSource = new DataSource({
   type: 'postgres',
-  host: process.env.DB_HOST,
-  port: Number(process.env.DB_PORT),
-  username: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_DATABASE,
+  url: process.env.DATABASE_URL,
   entities: [
     Todo,
     User,
@@ -21,6 +17,12 @@ export const dataSource = new DataSource({
     ],
   synchronize: false,
   logging: false,
+  ssl: true,
+  extra: {
+    ssl: {
+      rejectUnauthorized: false
+    }
+  },
   migrations: [
     "src/migration/*.ts"
   ],
