@@ -1,6 +1,6 @@
 import Router from "koa-router"
 
-import todoRoutes from "./toDoRoute"
+import todoRoutes from "./todoRoute"
 import cryptoRoutes from "./cryptoRoute"
 import userRoutes from "./userRoute"
 
