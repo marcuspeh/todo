@@ -1,4 +1,4 @@
-import User from "entity/user"
+import User from "../entity/user"
 import { ITodoDb, TodoDb } from "../db/todoDb"
 import Todo from "../entity/todo"
 import CustomError from "../errors/customError"
