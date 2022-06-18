@@ -36,6 +36,7 @@ MAX_USER_TOKEN_VALIDITY_SECONDS = 3600
 | |
 | /api/user/register | POST | ALL | Registers a new user |
 | /api/user/login | POST | ALL | Logs in a user |
+| /api/user/logout | POST | ALL | Logout a user |
 | |
 | /api/todo/getAll | GET | AUTH | Retrieves all todos |
 | /api/todo/getUndone | GET | Auth | Retrieves all undone todos |
@@ -225,6 +226,25 @@ Logs in a user
 E0010: Request body format is wrong
 E0300: Invalid credentials
 
+---
+
+## API: /api/user/logout
+
+### Description: 
+Logout a user
+
+### Request body:
+None
+
+### Reponse:
+```json
+{
+    "message": "Goodbye"
+}
+```
+
+### Errors: 
+None
 ---
 
 ## API: /api/todo/getAll

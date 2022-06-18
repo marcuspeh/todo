@@ -27,7 +27,7 @@ export default class CryptoService {
         const user: User = await this.userDb.getUserByEmail(email)
 
         if (!user) {
-            throw new CustomError(errorCode.CREDENTIALS_INVALID, "USer with email not found")
+            throw new CustomError(errorCode.CREDENTIALS_INVALID, "User with email not found")
         }
         
         const password: string = await rsaServiceHelper.decrypt(encryptedPassword)

@@ -39,4 +39,8 @@ export default class TokenService {
 
         return token
     }
+
+    public async invalidateToken(userId: string, tokenType: TOKEN_TYPE): Promise<void> {
+        await this.tokenDb.invalidateToken(userId, tokenType)
+    }
 }

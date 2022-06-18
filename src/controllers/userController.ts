@@ -4,6 +4,7 @@ import UserService from "../services/userService"
 import { loginUserDTO, registerUserDTO } from "./apiSchemas/userDTO"
 import dtoValidator from "./helper/dtoValidator"
 import TokenService from "../services/tokenService"
+import { TOKEN_TYPE } from "../entity/enum/tokenType"
 
 class UserController {
     private userService: UserService = new UserService()
@@ -44,6 +45,20 @@ class UserController {
                 name: user.name,
                 email: user.email
             }
+        }
+    }
+
+    public async logout(ctx: Context) {
+        const userId = ctx.request.header.userId.toString()
+
+        await this.tokenService.invalidateToken(userId, TOKEN_TYPE.USER_TOKEN)
+        await this.tokenService.invalidateToken(userId, TOKEN_TYPE.USER_CSRF_TOKEN)
+
+        
+        ctx.cookies.set("GIN", undefined)
+        ctx.cookies.set("TONIC", undefined)
+        ctx.body = {
+            message: "Goodbye"
         }
     }
 }

@@ -1,6 +1,7 @@
 import cookieParser from 'koa-cookie'
 import Koa from 'koa'
 import bodyParser from 'koa-bodyparser'
+import Cors from '@koa/cors'
 
 import routes from './routes/index'
 import apiKeyCheck from './middleware/apiKeyMiddleware'
@@ -21,6 +22,7 @@ app.use(async (ctx: Koa.Context, next: () => Promise<any>) => {
 
 
 // Middleware
+app.use(Cors({ credentials: true }))
 app.use(apiKeyCheck)
 app.use(cookieParser())
 app.use(bodyParser())
