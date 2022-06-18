@@ -21,7 +21,7 @@ export default function RegisterComponment() {
             }}
             >
             <Typography variant="h4" sx={{ fontWeight: '700' }}> 
-                Todo Task Manager
+                Todo Manager
             </Typography>
             <  RegisterForm   />
             <Typography variant="body2">

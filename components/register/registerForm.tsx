@@ -5,7 +5,7 @@ import { registerUser } from '../../apiController/userController';
 import UserInput from '../atoms/userInput';
 
 
-const   RegisterForm  : React.FC = (): JSX.Element => {
+const RegisterForm: React.FC = (): JSX.Element => {
     const [inputName, setInputName] = useState("")
     const [inputEmail, setInputEmail] = useState("")
     const [inputPassword, setInputPassword] = useState("")

@@ -1,4 +1,5 @@
 import { Box, Button, Link, Typography } from '@mui/material';
+import Router from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { loginUser } from '../../apiController/userController';
 import UserInput from '../atoms/userInput';
@@ -45,7 +46,11 @@ const LoginForm: React.FC = (): JSX.Element => {
 
         if (isValid) {
             const data = await loginUser(inputEmail, inputPassword)
-            setAuthError(data.errorCode)
+            if (data.isSuccess) {
+                Router.push("/")
+            } else {
+                setAuthError(data.errorCode)
+            }
         }
     };
 
@@ -54,8 +59,10 @@ const LoginForm: React.FC = (): JSX.Element => {
             <Typography variant="h5">
                 Login
             </Typography>
-            <UserInput label={'Email'} type={'email'} error={emailError} autoComplete={'email'} onChange={onEmailInputChange} />
-            <UserInput label={'Password'} type={'password'} error={authError} autoComplete={'current-password'} onChange={onPasswordInputChange} />
+            <UserInput label={'Email'} type={'email'} error={emailError} 
+                autoComplete={'email'} onChange={onEmailInputChange} />
+            <UserInput label={'Password'} type={'password'} error={authError} 
+                autoComplete={'current-password'} onChange={onPasswordInputChange} />
             <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} >
                 Sign In
             </Button>
