@@ -1,6 +1,6 @@
 import { ResponseModel } from "../models/responseModel";
 import customAxios from "../utilities/customAxios";
-import { extractErrorCode } from "./helper/apiHelper";
+import { extractErrorMessage } from "./helper/apiHelper";
 import { encryptPassword } from "./helper/rsaHelper";
 
 export async function loginUser(email: string, password: string): Promise<ResponseModel> {
@@ -18,7 +18,7 @@ export async function loginUser(email: string, password: string): Promise<Respon
     } catch (err: any) {
         return {
             isSuccess: false,
-            errorCode: extractErrorCode(err.response)
+            errorCode: extractErrorMessage(err.response)
         }
     }
 }
@@ -40,7 +40,7 @@ export async function registerUser(name: string, email: string, password: string
     } catch (err: any) {
         return {
             isSuccess: false,
-            errorCode: extractErrorCode(err.response)
+            errorCode: extractErrorMessage(err.response)
         }
     }
 }

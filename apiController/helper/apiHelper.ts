@@ -1,5 +1,6 @@
 import Cookies from "universal-cookie"
 import { USER_CSRF_TOKEN, USER_TOKEN } from "../../utilities/constants"
+import { ErrorMapping } from "../../utilities/errorMessageMapping"
 
 const cookies = new Cookies()
 
@@ -24,6 +25,14 @@ export function getCookies(): string {
 export function extractErrorCode(err: any): string {
     if (err && err.data && err.data.error && err.data.error.code) {
         return err.data.error.code
+    }
+    return ""
+}
+
+export function extractErrorMessage(err: any): string {
+    if (err && err.data && err.data.error && err.data.error.code) {
+        const errorCode = err.data.error.code
+        return ErrorMapping[errorCode] || ""
     }
     return ""
 }

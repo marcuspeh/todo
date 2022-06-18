@@ -1,4 +1,5 @@
 export interface ResponseModel {
     isSuccess: boolean,
-    errorCode: string
+    errorCode: string,
+    data?: any
 }
