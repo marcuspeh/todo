@@ -15,7 +15,7 @@ class TodoController {
         const todos: Todo[] = await this.todoService.getAllTodo(userId)
 
         ctx.body = {
-            data: todos 
+            todos: todos 
         }
     }
 
@@ -24,7 +24,7 @@ class TodoController {
         const todos: Todo[] = await this.todoService.getAllDone(userId)
 
         ctx.body = {
-            data: todos
+            todos: todos
         }
     }
 
@@ -33,7 +33,7 @@ class TodoController {
         const todos: Todo[] = await this.todoService.getAllUndone(userId)
 
         ctx.body = {
-            data: todos 
+            todos: todos 
         }
     }
 
@@ -44,7 +44,7 @@ class TodoController {
         const todo: Todo = await this.todoService.getTodoById(apiDto.id, userId)
 
         ctx.body = {
-            data: todo
+            todo: todo
         }
     }
 
@@ -57,7 +57,7 @@ class TodoController {
         const todo: Todo = await this.todoService.createTodo(apiDto.title, apiDto.task, user)
 
         ctx.body = {
-            data: todo
+            todo: todo
         }
     }
 
@@ -79,7 +79,7 @@ class TodoController {
         const todo:Todo = await this.todoService.updateTodo(apiDto.id, apiDto.title, apiDto.task, userId)
        
         ctx.body = {
-           data: todo
+            todo: todo
         }
     }
 
@@ -90,7 +90,7 @@ class TodoController {
         const todo = await this.todoService.markAsDoneById(apiDto.id, userId)
 
         ctx.body = {
-            data: todo,
+            todo: todo,
         }
     }
 
@@ -101,7 +101,7 @@ class TodoController {
         const todo = await this.todoService.markAsUndoneById(apiDto.id, userId)
 
         ctx.body = {
-            data: todo,
+            todo: todo,
         }
     }
 }
