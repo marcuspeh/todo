@@ -1,7 +1,7 @@
 import React from 'react';
 import { TodoModel } from '../../models/todoModel';
 import { formatDate } from '../../utilities/dateFormatter';
-import TodoCard from '../atoms/todoCard';
+import TodoCard from './todoCard';
 
 interface Prop {
     data: TodoModel[]
