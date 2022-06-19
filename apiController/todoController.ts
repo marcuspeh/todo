@@ -65,7 +65,6 @@ export async function markDone(todoId: string): Promise<ResponseModel> {
             errorCode: ""
         }
     } catch (err: any) {
-        console.log(err)
         return {
             isSuccess: false,
             errorCode: extractErrorMessage(err.response)

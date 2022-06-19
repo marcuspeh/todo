@@ -1,5 +1,5 @@
 export enum ViewType {
-    VIEW_ALL,
-    VIEW_DONE,
-    VIEW_UNDONE
+    VIEW_ALL = "View All",
+    VIEW_DONE = "View Done",
+    VIEW_UNDONE = "View Pending"
 }

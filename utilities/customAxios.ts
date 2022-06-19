@@ -9,22 +9,13 @@ customAxios.interceptors.request.use((config) => {
     
     config.withCredentials = true
     config.headers = tonic ? {
-        Cookie: getCookies(),
         TONIC: getUserCsrf(),
         APITOKEN: process.env.API_KEY || "",
         'Content-Type': 'application/json;charset=utf-8',
-        'X-Frame-Options': 'DENY',
-        'X-Content-Type-Options': 'nosniff',
-        'Cache-Control': 'no-store',
-        'Strict-Transport-Security': ' max-age=31536000',
         'Access-Control-Allow-Origin': process.env.FRONTEND_URL || ""
     } : {
         APITOKEN: process.env.API_KEY || "",
         'Content-Type': 'application/json',
-        'X-Frame-Options': 'DENY',
-        'X-Content-Type-Options': 'nosniff',
-        'Cache-Control': 'no-store',
-        'Strict-Transport-Security': ' max-age=31536000',
         'Access-Control-Allow-Origin': process.env.FRONTEND_URL || ""
     }
     return config

@@ -3,6 +3,6 @@ import NewTodo from "../components/editTodo/newTodo";
 
 export default function newTodo(props: any) {
     return (
-        <NavbarLayout reactElement={<NewTodo />} title={"Create new todo"} />
+        <NavbarLayout reactElement={<NewTodo />} title={"Create New Todo"} />
     )
 }

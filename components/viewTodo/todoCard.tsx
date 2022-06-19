@@ -1,6 +1,7 @@
 import { Button, Card, CardActions, CardContent, Typography } from '@mui/material'
 import React, { useState } from 'react';
 import { deleteTodo, markDone, markUndone, saveTodo } from '../../apiController/todoController';
+import { ViewType } from '../../models/viewType';
 import UserInput from '../atoms/userInput';
 
 interface Props {
@@ -9,10 +10,11 @@ interface Props {
     date: string
     isDone: boolean
     todoId: string
+    viewMode: ViewType
 }
 
 const TodoCard: React.FC<Props> = (props): JSX.Element => {
-    const { title, body, date, isDone, todoId, ...rest } = props
+    const { title, body, date, isDone, todoId, viewMode, ...rest } = props
 
     const [currTitle, setTitle] = useState(title)
     const [currBody, setBody] = useState(body)
@@ -74,59 +76,63 @@ const TodoCard: React.FC<Props> = (props): JSX.Element => {
     async function markDoneButtonClick(e: any): Promise<void> {
         const result =  await markDone(todoId)
         if (result.isSuccess) {
-            setIsDone(false)
+            setIsDone(true)
         }
     }
 
     async function markPendingButtonClick(e: any): Promise<void> {
         const result = await markUndone(todoId)
         if (result.isSuccess) {
-            setIsDone(true)
+            setIsDone(false)
         }
     }
 
-    if (isNotDeleted) {
-        return (
-            <Card variant="outlined" sx={{my:2}}>
-                <CardContent>
-                { isEditing ? (
-                    <>
-                    <UserInput label={'Title'} type={'text'} error={titleError} 
-                        onChange={onTitleChange} defaultValue={currTitle} />
-                    <Typography variant="body2" sx={{color: 'grey', mb: 1}}>{date}</Typography>
-                    <UserInput label={'Body'} type={'text'} error={bodyError} 
-                        onChange={onBodyChange} defaultValue={currBody} isMultiline={true}/>
-                    </>
-                ) : (
-                    <>
-                    <Typography variant='h5'>{currTitle}</Typography>
-                    <Typography variant="body2" sx={{color: 'grey', mb: 1 }}>{date}</Typography>
-                    <Typography variant='body1'>{currBody}</Typography>
-                    </>
-                )}
-                </CardContent>
-                <CardActions>
-                { isEditing ? (
-                    <>
-                    <Button size="small" onClick={saveButtonClick}>Save</Button>
-                    <Button size="small" onClick={deleteButtonClick}>Delete</Button>
-                    </>
-                ) : (
-                    <>
-                    <Button size="small" onClick={editButtonClick}>Edit</Button>
-                    { currIsDone ? (
-                        <Button size="small" onClick={markDoneButtonClick}>Mark as pending</Button>
-                    ) : (
-                        <Button size="small" onClick={markPendingButtonClick}>Mark as done</Button>
-                    )}
-                    </>
-                )}
-                </CardActions>
-            </Card>
-        )
-    } else {
+    if (!isNotDeleted) {
         return <></>
     }
+
+    if (viewMode !== ViewType.VIEW_ALL && currIsDone !== isDone) {
+        return <></>
+    }
+    console.log(currIsDone)
+    return (
+        <Card variant="outlined" sx={{my:2}}>
+            <CardContent>
+            { isEditing ? (
+                <>
+                <UserInput label={'Title'} type={'text'} error={titleError} 
+                    onChange={onTitleChange} defaultValue={currTitle} />
+                <Typography variant="body2" sx={{color: 'grey', mb: 1}}>{date}</Typography>
+                <UserInput label={'Body'} type={'text'} error={bodyError} 
+                    onChange={onBodyChange} defaultValue={currBody} isMultiline={true}/>
+                </>
+            ) : (
+                <>
+                <Typography variant='h5'>{currTitle}</Typography>
+                <Typography variant="body2" sx={{color: 'grey', mb: 1 }}>{date}</Typography>
+                <Typography variant='body1'>{currBody}</Typography>
+                </>
+            )}
+            </CardContent>
+            <CardActions>
+            { isEditing ? (
+                <>
+                <Button size="small" onClick={saveButtonClick}>Save</Button>
+                <Button size="small" onClick={deleteButtonClick}>Delete</Button>
+                </>
+            ) : (
+                <>
+                <Button size="small" onClick={editButtonClick}>Edit</Button>
+                { currIsDone ? (
+                    <Button size="small" onClick={markPendingButtonClick}>Mark as pending</Button>
+                ) : (
+                    <Button size="small" onClick={markDoneButtonClick}>Mark as done</Button>
+                )}
+                </>
+            )}
+            </CardActions>
+        </Card>
+    )
 }
 
 export default TodoCard

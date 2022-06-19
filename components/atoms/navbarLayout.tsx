@@ -111,16 +111,22 @@ const NavbarLayout: React.FC<Props> = (props): JSX.Element => {
             </DrawerHeader>
             <Divider />
             <List>
-            {['View todo', 'Create New'].map((text, index) => (
-                <ListItem key={text} disablePadding>
-                <ListItemButton>
+              <ListItem key={"View todo"} disablePadding>
+                <ListItemButton href={"/"}>
                     <ListItemIcon>
-                    {index % 2 === 0 ? <MoveToInbox /> : <Mail />}
+                    <MoveToInbox />
                     </ListItemIcon>
-                    <ListItemText primary={text} />
+                    <ListItemText primary={"View todo"} />
                 </ListItemButton>
-                </ListItem>
-            ))}
+              </ListItem>
+              <ListItem key={"Create new"} disablePadding>
+                <ListItemButton href={"/new"}>
+                    <ListItemIcon>
+                      <Mail />
+                    </ListItemIcon>
+                    <ListItemText primary={"Create New"} />
+                </ListItemButton>
+              </ListItem>
             </List>
         </Drawer>
         <Main open={open}>

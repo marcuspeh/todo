@@ -25,7 +25,7 @@ const NewTodo: React.FC = (): JSX.Element => {
             setBodyError("")
             setInputBody(e.target.value)
         } else {
-            setBodyError("Title is required")
+            setBodyError("Body is required")
         }
     }
 
@@ -51,12 +51,6 @@ const NewTodo: React.FC = (): JSX.Element => {
             } else {
                 setBannerMessage(result.errorCode)
             }
-            // const data = await loginUser(inputEmail, inputPassword)
-            // if (data.isSuccess) {
-            //     Router.push("/")
-            // } else {
-            //     setAuthError(data.errorCode)
-            // }
         }
     };
 

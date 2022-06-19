@@ -25,7 +25,6 @@ export default function Login(props: any) {
     useEffect(() => {
         (async () => {
           const result: TodoModel[] = await getData(viewType)
-          console.log("Norm", result)
           setData(result)
         })()
       }, [])
@@ -44,11 +43,11 @@ export default function Login(props: any) {
           
     const reactElement = (<>
         <DropDown value={viewType} onClick={onViewTypeSelect} />
-        <TodoList data={data} />
+        <TodoList data={data} viewMode={viewType}/>
     </>)
     return (
         <>
-            <NavbarLayout reactElement={reactElement} title={"View todo"} />
+            <NavbarLayout reactElement={reactElement} title={viewType} />
         </>
         )
   }
