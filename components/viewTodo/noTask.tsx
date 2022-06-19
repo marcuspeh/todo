@@ -2,7 +2,7 @@ import { Typography } from '@mui/material';
 import React from 'react';
 
 const NoTask: React.FC = (): JSX.Element => {
-    return <Typography>There is no task found</Typography>
+    return <Typography variant={"body1"}>Oops, we couldn't find any todo :(</Typography>
 }
 
 export default NoTask;
