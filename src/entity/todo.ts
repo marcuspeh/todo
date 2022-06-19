@@ -6,7 +6,7 @@ import User from "./user"
 
 @Entity()
 export default class Todo {
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn('uuid')
     id: number
 
     @IsDefined()
