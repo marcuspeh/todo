@@ -19,9 +19,9 @@ const DropDown: React.FC<Props> = (props): JSX.Element => {
                 label="View"
                 onChange={onClick}
             >
-                <MenuItem value={ViewType.VIEW_ALL}>View All</MenuItem>
-                <MenuItem value={ViewType.VIEW_UNDONE}>View Undone</MenuItem>
-                <MenuItem value={ViewType.VIEW_DONE}>View Done</MenuItem>
+                <MenuItem value={ViewType.VIEW_ALL}>All</MenuItem>
+                <MenuItem value={ViewType.VIEW_UNDONE}>Pending</MenuItem>
+                <MenuItem value={ViewType.VIEW_DONE}>Done</MenuItem>
             </Select>
         </FormControl>
     )

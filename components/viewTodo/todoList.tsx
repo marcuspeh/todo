@@ -2,6 +2,7 @@ import React from 'react';
 import { TodoModel } from '../../models/todoModel';
 import { ViewType } from '../../models/viewType';
 import { formatDate } from '../../utilities/dateFormatter';
+import NoTask from './noTask';
 import TodoCard from './todoCard';
 
 interface Prop {
@@ -19,7 +20,7 @@ const TodoList: React.FC<Prop> = (prop: Prop): JSX.Element => {
         })
         return (<>{dataMap}</>)
     } else {
-        return <></>
+        return <NoTask />
     }
 }
 
