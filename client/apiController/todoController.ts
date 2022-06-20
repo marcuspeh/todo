@@ -5,7 +5,7 @@ import { extractErrorMessage } from "./helper/apiHelper";
 export async function getUndone(): Promise<ResponseModel> {
     try {
         const result = await customAxios
-            .get(process.env.BACKEND_URL + "/todo/getUndone")
+            .get("/api/todo/getUndone")
         return {
             isSuccess: true,
             errorCode: "",
@@ -22,7 +22,7 @@ export async function getUndone(): Promise<ResponseModel> {
 export async function getDone(): Promise<ResponseModel> {
     try {
         const result = await customAxios
-            .get(process.env.BACKEND_URL + "/todo/getDone")
+            .get("/api/todo/getDone")
         return {
             isSuccess: true,
             errorCode: "",
@@ -40,7 +40,7 @@ export async function getDone(): Promise<ResponseModel> {
 export async function getAll(): Promise<ResponseModel> {
     try {
         const result = await customAxios
-            .get(process.env.BACKEND_URL + "/todo/getAll")
+            .get("/api/todo/getAll")
         return {
             isSuccess: true,
             errorCode: "",
@@ -57,7 +57,7 @@ export async function getAll(): Promise<ResponseModel> {
 export async function markDone(todoId: string): Promise<ResponseModel> {
     try {
         const result = await customAxios
-            .patch(process.env.BACKEND_URL + "/todo/markDone", {
+            .patch("/api/todo/markDone", {
                 id: todoId
             })
         return {
@@ -75,7 +75,7 @@ export async function markDone(todoId: string): Promise<ResponseModel> {
 export async function markUndone(todoId: string): Promise<ResponseModel> {
     try {
         const result = await customAxios
-            .patch(process.env.BACKEND_URL + "/todo/markUndone", {
+            .patch("/api/todo/markUndone", {
                 id: todoId
             })
         return {
@@ -93,7 +93,7 @@ export async function markUndone(todoId: string): Promise<ResponseModel> {
 export async function deleteTodo(todoId: string): Promise<ResponseModel> {
     try {
         const result = await customAxios
-            .patch(process.env.BACKEND_URL + "/todo/delete", {
+            .patch("/api/todo/delete", {
                 id: todoId
             })
         return {
@@ -111,7 +111,7 @@ export async function deleteTodo(todoId: string): Promise<ResponseModel> {
 export async function saveTodo(todoId: string, title: string, body: string): Promise<ResponseModel> {
     try {
         const result = await customAxios
-            .patch(process.env.BACKEND_URL + "/todo/update", {
+            .patch("/api/todo/update", {
                 id: todoId,
                 title: title,
                 task: body
@@ -130,7 +130,7 @@ export async function saveTodo(todoId: string, title: string, body: string): Pro
 export async function createNewTodo(title: string, body: string): Promise<ResponseModel> {
     try {
         const result = await customAxios
-            .post(process.env.BACKEND_URL + "/todo/createNew", {
+            .post("/api/todo/createNew", {
                 title: title,
                 task: body
             })

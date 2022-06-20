@@ -7,7 +7,7 @@ export async function loginUser(email: string, password: string): Promise<Respon
     try {
         const encryptedPassword = await encryptPassword(password)
         const result = await customAxios
-            .post(process.env.BACKEND_URL + "/user/login", {
+            .post("/api/user/login", {
                 email: email,
                 password: encryptedPassword
             })
@@ -27,7 +27,7 @@ export async function registerUser(name: string, email: string, password: string
     try {
         const encryptedPassword = await encryptPassword(password)
         const result = await customAxios
-            .post(process.env.BACKEND_URL + "/user/register", {
+            .post("/api/user/register", {
                 email: email,
                 name: name,
                 password: encryptedPassword
