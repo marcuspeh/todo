@@ -26,7 +26,7 @@ export default function LoginComponment() {
             </Typography>
             <LoginForm />
             <Typography variant="body2">
-                Don't have an account? {" "}
+                Don&apos;t have an account? {" "}
                 <Link href="/register" variant="body2">
                     Sign Up
                 </Link>
