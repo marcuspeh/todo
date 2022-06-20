@@ -94,7 +94,7 @@ const TodoCard: React.FC<Props> = (props): JSX.Element => {
     if (viewMode !== ViewType.VIEW_ALL && currIsDone !== isDone) {
         return <></>
     }
-    console.log(currIsDone)
+    
     return (
         <Card variant="outlined" sx={{my:2}}>
             <CardContent>

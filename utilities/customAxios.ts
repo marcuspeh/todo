@@ -11,7 +11,7 @@ customAxios.interceptors.request.use((config) => {
     config.headers = tonic ? {
         TONIC: getUserCsrf(),
         APITOKEN: process.env.API_KEY || "",
-        'Content-Type': 'application/json;charset=utf-8',
+        'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': process.env.FRONTEND_URL || ""
     } : {
         APITOKEN: process.env.API_KEY || "",
