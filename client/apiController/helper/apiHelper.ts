@@ -30,8 +30,8 @@ export function extractErrorCode(err: any): string {
 }
 
 export function extractErrorMessage(err: any): string {
-    if (err && err.data && err.data.error && err.data.error.code) {
-        const errorCode = err.data.error.code
+    const errorCode: string = extractErrorCode(err)
+    if (errorCode) {
         return ErrorMapping[errorCode] || ""
     }
     return ""
