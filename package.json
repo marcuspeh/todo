@@ -11,6 +11,7 @@
     "install-dependency": "npm install && cd client && npm install",
     "backend": "npm run migration && npm run serve",
     "frontend": "npm run dev --prefix client",
+    "start": "npm run backend",
     "dev": "concurrently \"npm run backend\" \"npm run frontend\"",
     "heroku-postbuild": "cd client && npm install && npm run build",
     "typeorm": "typeorm-ts-node-esm -d ./src/data-source.ts",
