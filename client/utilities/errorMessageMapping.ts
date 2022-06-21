@@ -1,4 +1,8 @@
-export const ErrorMapping = {
+interface jsonObect {
+    [x: string]: string
+}
+
+export const ErrorMapping: jsonObect = {
     /* Generic error code */
     "E0000": "E0000. Please contact administrator.",
     "E0001": "E0001. Please contact administrator.",
