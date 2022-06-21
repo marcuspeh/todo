@@ -2,10 +2,11 @@
 const nextConfig = {
   reactStrictMode: true,
   env: {
-    BACKEND_URL: "http://localhost:3000/api",
-    FRONTEND_URL: "http://localhost:3001",
+    BACKEND_URL: "https://protected-scrubland.herokuapp.com/api",
+    FRONTEND_URL: "https://todo-lime-theta.vercel.app/",
     API_KEY: "VERY SECRET KEY"
   }
 }
 
 module.exports = nextConfig
+ 
