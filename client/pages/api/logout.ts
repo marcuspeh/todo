@@ -11,8 +11,8 @@ export default async function handler(
     const result = await customAxios.post(process.env.BACKEND_URL + "/user/logout")
 
     res.setHeader('Set-Cookie', [
-      serialize('GIN', undefined, {}),
-      serialize('TONIC', undefined, {}) 
+      serialize('GIN', "", {}),
+      serialize('TONIC', "", {}) 
     ])
     res.status(200).json(result.data)
 
