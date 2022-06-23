@@ -1,8 +1,10 @@
 import { styled, useTheme } from '@mui/material/styles'
 import { Box, CssBaseline, Toolbar, IconButton, Typography, Drawer, Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar'
-import { Menu, ChevronLeft, ChevronRight, MoveToInbox, Mail } from '@mui/icons-material'
+import { Menu, ChevronLeft, ChevronRight, FormatListBulleted, Add, Logout } from '@mui/icons-material'
 import { ReactNode, useState } from 'react'
+import { logoutUser } from '../../apiController/userController'
+import Router from 'next/router'
 
 const drawerWidth = 240
 
@@ -57,6 +59,11 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 interface Props {
     title: string
     reactElement: ReactNode
+}
+
+const logoutClick = async () => {
+  await logoutUser()
+  Router.push("/login")
 }
 
 const NavbarLayout: React.FC<Props> = (props): JSX.Element => {
@@ -114,7 +121,7 @@ const NavbarLayout: React.FC<Props> = (props): JSX.Element => {
               <ListItem key={"View todo"} disablePadding>
                 <ListItemButton href={"/"}>
                     <ListItemIcon>
-                    <MoveToInbox />
+                    <FormatListBulleted />
                     </ListItemIcon>
                     <ListItemText primary={"View todo"} />
                 </ListItemButton>
@@ -122,9 +129,17 @@ const NavbarLayout: React.FC<Props> = (props): JSX.Element => {
               <ListItem key={"Create new"} disablePadding>
                 <ListItemButton href={"/new"}>
                     <ListItemIcon>
-                      <Mail />
+                      <Add />
                     </ListItemIcon>
                     <ListItemText primary={"Create New"} />
+                </ListItemButton>
+              </ListItem>
+              <ListItem key={"logout"} disablePadding>
+                <ListItemButton onClick={logoutClick}>
+                    <ListItemIcon>
+                      <Logout />
+                    </ListItemIcon>
+                    <ListItemText primary={"Log out"} />
                 </ListItemButton>
               </ListItem>
             </List>

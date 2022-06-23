@@ -44,3 +44,20 @@ export async function registerUser(name: string, email: string, password: string
         }
     }
 }
+
+export async function logoutUser(): Promise<ResponseModel> {
+    try {
+        const result = await customAxios
+            .post(process.env.BACKEND_URL + "/user/logout")
+
+        return {
+            isSuccess: true,
+            errorCode: ""
+        }
+    } catch (err: any) {
+        return {
+            isSuccess: false,
+            errorCode: extractErrorMessage(err.response)
+        }
+    }
+}
