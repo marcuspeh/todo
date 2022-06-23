@@ -13,7 +13,6 @@
     "frontend": "npm run dev --prefix client",
     "start": "npm run backend",
     "dev": "concurrently \"npm run backend\" \"npm run frontend\"",
-    "heroku-postbuild": "cd client && npm install && npm run build",
     "typeorm": "typeorm-ts-node-esm -d ./src/data-source.ts",
     "create-migration": "npm run typeorm migration:generate -n AlterTodoTable",
     "migration": "npm run typeorm migration:run",

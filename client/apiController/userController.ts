@@ -7,7 +7,7 @@ export async function loginUser(email: string, password: string): Promise<Respon
     try {
         const encryptedPassword = await encryptPassword(password)
         const result = await customAxios
-            .post(process.env.BACKEND_URL + "/user/login", {
+            .post("/api/login", {
                 email: email,
                 password: encryptedPassword
             })

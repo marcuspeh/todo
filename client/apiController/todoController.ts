@@ -12,6 +12,7 @@ export async function getUndone(): Promise<ResponseModel> {
             data: result.data.todos
         }
     } catch (err: any) {
+        console.log(err.reponse)
         return {
             isSuccess: false,
             errorCode: extractErrorMessage(err.response)
