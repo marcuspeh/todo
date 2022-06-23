@@ -10,7 +10,9 @@ export default class CustomError extends Error {
         this.code = code
         this.info = info
         
-        if (code == errorCode.TOKEN_DOES_NOT_EXISTS || code == errorCode.TOKEN_INVALID) {
+        if (code == errorCode.TOKEN_DOES_NOT_EXISTS || 
+            code == errorCode.TOKEN_INVALID ||
+            code == errorCode.TOKEN_EXPIRED) {
             this.status = 401
         } else {
             this.status = 400
