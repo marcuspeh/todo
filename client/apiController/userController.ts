@@ -7,6 +7,7 @@ export async function loginUser(email: string, password: string): Promise<Respon
     try {
         const result = await customAxios
             .post("/api/user/login", {
+
                 email: email,
                 password: password
             })

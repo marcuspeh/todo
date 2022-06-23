@@ -1,5 +1,7 @@
 import cookieParser from 'koa-cookie'
 import Koa from 'koa'
+import serve from 'koa-static'
+import mount from 'koa-mount'
 import bodyParser from 'koa-bodyparser'
 import Cors from '@koa/cors'
 
@@ -30,6 +32,10 @@ app.proxy = true
 
 app.use(routes.routes())
 app.use(routes.allowedMethods())
+
+const front = new Koa();
+front.use(serve(__dirname + '/frontend'));
+app.use(mount('/', front));
 
 // Application error logging.
 app.on('error', console.error)

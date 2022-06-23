@@ -29,22 +29,13 @@ class UserController {
         const jwtUserToken: string = await this.tokenService.generateUserToken(user)
         const jwtUserCsrfToken: string = await this.tokenService.generateUserTokenCsrf(user)
 
-        const isDev: boolean = process.env.ENVIRONMENT === 'dev'
-        ctx.cookies.set("GIN", jwtUserToken, {
-            httpOnly: true,
-            secure: !isDev,
-            sameSite: "strict"
-        })
-        ctx.cookies.set("TONIC", jwtUserCsrfToken, {
-            httpOnly: false,
-            secure: !isDev,
-            sameSite: "strict"
-        })
         ctx.body = {
             user: {
                 name: user.name,
                 email: user.email
-            }
+            },
+            GIN: jwtUserToken,
+            TONIC: jwtUserCsrfToken
         }
     }
 
