@@ -1,4 +1,4 @@
-# todo
+# Todo Manager
 
 Todo manager is an app designed to keep track of to do. The app is split into
 2 parts, backend and frontend (client). Development of each part is done in their respective branch 
