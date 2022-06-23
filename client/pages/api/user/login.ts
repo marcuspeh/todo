@@ -18,7 +18,7 @@ export default async function handler(
     req.body.password = await encryptPassword(req.body.password)
 
     const result = await customAxios.post(process.env.BACKEND_URL + "/user/login", req.body)
-    res.setHeader('Set-Cookie', result.headers['set-cookie'])
+    res.setHeader('Set-Cookie', result.headers['set-cookie'] || "")
     res.setHeader('X-Frame-Options', 'DENY')
     res.setHeader('Strict-Transport-Security', 'max-age=314360000')
 
