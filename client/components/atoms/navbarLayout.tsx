@@ -62,8 +62,12 @@ interface Props {
 }
 
 const logoutClick = async () => {
-  await logoutUser()
-  Router.push("/login")
+  const data = await logoutUser()
+  if (data.isSuccess) {
+    Router.push("/login")
+  } else {
+    alert("Please try again")
+  }
 }
 
 const NavbarLayout: React.FC<Props> = (props): JSX.Element => {
