@@ -1,5 +1,10 @@
 # Backend
 
+For all request, the following is required in the header: 
+```
+APITOKEN: "VERY SECRET KEY"
+```
+
 ## Endpoints
 
 | Endpoints | Method | Access | Description|
