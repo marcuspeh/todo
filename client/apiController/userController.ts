@@ -1,36 +1,31 @@
-import { ResponseModel } from "../models/responseModel";
-import customAxios from "../utilities/customAxios";
-import { extractErrorMessage } from "./helper/apiHelper";
-import { encryptPassword } from "./helper/rsaHelper";
+import { ResponseModel } from "../models/responseModel"
+import customAxios from "../utilities/customAxios"
+import { extractErrorMessage } from "./helper/apiHelper"
+import { errorHelper } from "./helper/errorHelper"
 
 export async function loginUser(email: string, password: string): Promise<ResponseModel> {
     try {
-        const encryptedPassword = await encryptPassword(password)
         const result = await customAxios
-            .post(process.env.BACKEND_URL + "/user/login", {
+            .post("/api/user/login", {
                 email: email,
-                password: encryptedPassword
+                password: password
             })
         return {
             isSuccess: true,
             errorCode: ""
         }
     } catch (err: any) {
-        return {
-            isSuccess: false,
-            errorCode: extractErrorMessage(err.response)
-        }
+        return errorHelper(err)
     }
 }
 
 export async function registerUser(name: string, email: string, password: string): Promise<ResponseModel> {
     try {
-        const encryptedPassword = await encryptPassword(password)
         const result = await customAxios
-            .post(process.env.BACKEND_URL + "/user/register", {
+            .post("/api/user/register", {
                 email: email,
                 name: name,
-                password: encryptedPassword
+                password: password
             })
             
         return {
@@ -38,26 +33,20 @@ export async function registerUser(name: string, email: string, password: string
             errorCode: ""
         }
     } catch (err: any) {
-        return {
-            isSuccess: false,
-            errorCode: extractErrorMessage(err.response)
-        }
+        return errorHelper(err)
     }
 }
 
 export async function logoutUser(): Promise<ResponseModel> {
     try {
         const result = await customAxios
-            .post(process.env.BACKEND_URL + "/user/logout")
+            .post("/api/user/logout")
 
         return {
             isSuccess: true,
             errorCode: ""
         }
     } catch (err: any) {
-        return {
-            isSuccess: false,
-            errorCode: extractErrorMessage(err.response)
-        }
+        return errorHelper(err)
     }
 }

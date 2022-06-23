@@ -16,6 +16,7 @@ export function getCookies(): string {
     const userToken = cookies.get(USER_TOKEN)
     const userCsrfToken = cookies.get(USER_CSRF_TOKEN)
     
+    console.log(userToken, userCsrfToken)
     if (!userToken || !userCsrfToken) {
         return ""
     }
