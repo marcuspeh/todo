@@ -5,6 +5,8 @@ import { Menu, ChevronLeft, ChevronRight, FormatListBulleted, Add, Logout } from
 import { ReactNode, useState } from 'react'
 import { logoutUser } from '../../apiController/userController'
 import Router from 'next/router'
+import TodoCard from '../viewTodo/todoCard'
+import { ViewType } from '../../models/viewType'
 
 const drawerWidth = 240
 
