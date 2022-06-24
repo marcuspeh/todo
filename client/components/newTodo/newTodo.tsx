@@ -61,8 +61,8 @@ const NewTodo: React.FC = (): JSX.Element => {
         <Box component="form" onSubmit={handleSubmit} noValidate  sx={{ mt: 3, mb: 2, px: 3, py: 3, borderRadius: '10px' }} bgcolor="#d4e3fb">
             {!!(errorBannerMessage.length !== 0) && <Alert severity="warning">{errorBannerMessage}</Alert>}
             {!!(successBannerMessage.length !== 0) && <Alert severity="success">{successBannerMessage}</Alert>}
-            <UserInput label={'Title'} type={'text'} error={titleError} onChange={onTitleInputChange} />
-            <UserInput label={'Body'} type={'text'} error={bodyError}  isMultiline={true} onChange={onBodyInputChange} />
+            <UserInput label={'Title'} type={'text'} error={titleError} value={inputTitle} onChange={onTitleInputChange} />
+            <UserInput label={'Body'} type={'text'} error={bodyError} value={inputBody} isMultiline={true} onChange={onBodyInputChange} />
             <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} >
                 Create new
             </Button>

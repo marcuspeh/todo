@@ -21,25 +21,17 @@ async function getData(type: ViewType): Promise<TodoModel[]> {
 export default function Login(props: any) {
     const [data, setData] = useState<TodoModel[]>([])
     const [viewType, setViewType] = useState(ViewType.VIEW_UNDONE)
-  
-    useEffect(() => {
-        (async () => {
-          const result: TodoModel[] = await getData(viewType)
-          setData(result)
-        })()
-      }, [])
-    
-      useEffect(() => {
-        (async () => {
-          const result: TodoModel[] = await getData(viewType)
-          setData(result)
-        })()
-      }, [viewType])
-    
 
-      function onViewTypeSelect(e: any): void {
-        setViewType(e.target.value)
-      }
+    useEffect(() => {
+      (async () => {
+        const result: TodoModel[] = await getData(viewType)
+        setData(result)
+      })()
+    }, [viewType])
+  
+    function onViewTypeSelect(e: any): void {
+      setViewType(e.target.value)
+    }
           
     const reactElement = (<>
         <DropDown value={viewType} onClick={onViewTypeSelect} />

@@ -101,10 +101,10 @@ const TodoCard: React.FC<Props> = (props): JSX.Element => {
             { isEditing ? (
                 <>
                 <UserInput label={'Title'} type={'text'} error={titleError} 
-                    onChange={onTitleChange} defaultValue={currTitle} />
+                    onChange={onTitleChange} value={currTitle} />
                 <Typography variant="body2" sx={{color: 'grey', mb: 1}}>{date}</Typography>
                 <UserInput label={'Body'} type={'text'} error={bodyError} 
-                    onChange={onBodyChange} defaultValue={currBody} isMultiline={true}/>
+                    onChange={onBodyChange} value={currBody} isMultiline={true}/>
                 </>
             ) : (
                 <>

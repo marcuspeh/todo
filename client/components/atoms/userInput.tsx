@@ -8,7 +8,7 @@ interface Props {
     error: string
     isMultiline?: boolean
     autoComplete?: string
-    defaultValue?: string
+    value?: string
     onChange: (e: any) => void  
 }
 
@@ -17,7 +17,7 @@ const StyledTypography = styled(Typography) `
 `
   
 const UserInput: React.FC<Props> = (props): JSX.Element => {
-    const { label, type, error, isMultiline, autoComplete, defaultValue, onChange, ...rest } = props
+    const { label, type, error, isMultiline, autoComplete, value, onChange, ...rest } = props
 
 
     return (
@@ -30,7 +30,7 @@ const UserInput: React.FC<Props> = (props): JSX.Element => {
             type={type}
             onChange={onChange}
             autoComplete={autoComplete}
-            defaultValue={defaultValue}
+            value={value}
             multiline={isMultiline}
             size='small'
             sx={{ mt: 2, boxShadow: 1, backgroundColor: '#FFFFFF', borderRadius: '10px' }}
