@@ -1,8 +1,8 @@
-import { Alert, Box, Button, Typography } from '@mui/material';
-import Router from 'next/router';
-import React, { useEffect, useState } from 'react';
-import { registerUser } from '../../apiController/userController';
-import UserInput from '../atoms/userInput';
+import { Alert, Box, Button, Typography } from '@mui/material'
+import Router from 'next/router'
+import React, { useEffect, useState } from 'react'
+import { registerUser } from '../../services/api/userController'
+import UserInput from '../atoms/userInput'
 
 
 const RegisterForm: React.FC = (): JSX.Element => {

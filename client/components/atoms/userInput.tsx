@@ -1,6 +1,6 @@
 import { TextField, Typography } from '@mui/material'
 import styled from '@emotion/styled'
-import React from 'react';
+import React from 'react'
 
 interface Props {
     label: string

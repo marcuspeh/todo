@@ -1,8 +1,8 @@
-import { Box, Button, Link, Typography } from '@mui/material';
-import Router from 'next/router';
-import React, { useEffect, useState } from 'react';
-import { loginUser } from '../../apiController/userController';
-import UserInput from '../atoms/userInput';
+import { Box, Button, Link, Typography } from '@mui/material'
+import Router from 'next/router'
+import React, { useEffect, useState } from 'react'
+import { loginUser } from '../../services/api/userController'
+import UserInput from '../atoms/userInput'
 
 
 const LoginForm: React.FC = (): JSX.Element => {
@@ -52,7 +52,7 @@ const LoginForm: React.FC = (): JSX.Element => {
                 setAuthError(data.errorCode)
             }
         }
-    };
+    }
 
     return (
         <Box component="form" onSubmit={handleSubmit} noValidate  sx={{ mt: 3, mb: 2, px: 3, py: 3, borderRadius: '10px' }} bgcolor="#d4e3fb">

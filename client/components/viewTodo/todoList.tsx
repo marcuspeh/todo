@@ -1,9 +1,9 @@
-import React from 'react';
-import { TodoModel } from '../../models/todoModel';
-import { ViewType } from '../../models/viewType';
-import { formatDate } from '../../utilities/dateFormatter';
-import NoTask from './noTask';
-import TodoCard from './todoCard';
+import React from 'react'
+import { TodoModel } from '../../models/todoModel'
+import { ViewType } from '../../models/viewType'
+import { formatDate } from '../../utilities/dateFormatter'
+import NoTask from './noTask'
+import TodoCard from './todoCard'
 
 interface Prop {
     data: TodoModel[]

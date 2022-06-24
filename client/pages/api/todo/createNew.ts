@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import customAxios from '../../../utilities/customAxios';
+import { getHeader } from '../../../apiController/apiUtilities'
+import customAxios from '../../../utilities/customAxios'
 
 type Data = {
   title: string
@@ -15,7 +16,7 @@ export default async function handler(
   }
   
   try {
-    const result = await customAxios.post(process.env.BACKEND_URL + "/todo/createNew", req.body)
+    const result = await customAxios.post(process.env.BACKEND_URL + "/todo/createNew", req.body, {headers: getHeader(req)})
 
     res.status(200).json(result.data)
   } catch (err: any) {

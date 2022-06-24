@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import customAxios from '../../../utilities/customAxios';
+import { getHeader } from '../../../apiController/apiUtilities'
+import customAxios from '../../../utilities/customAxios'
 
 type Data = {
   id: string
@@ -14,7 +15,7 @@ export default async function handler(
   }
   
   try {
-    const result = await customAxios.patch(process.env.BACKEND_URL + "/todo/markDone", req.body)
+    const result = await customAxios.patch(process.env.BACKEND_URL + "/todo/markDone", req.body, {headers: getHeader(req)})
 
     res.status(200).json(result.data)
   } catch (err: any) {

@@ -1,12 +1,12 @@
-import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import CssBaseline from '@mui/material/CssBaseline';
-import Link from '@mui/material/Link';
-import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
-import LoginForm from './loginForm';
+import * as React from 'react'
+import Avatar from '@mui/material/Avatar'
+import CssBaseline from '@mui/material/CssBaseline'
+import Link from '@mui/material/Link'
+import Paper from '@mui/material/Paper'
+import Box from '@mui/material/Box'
+import Grid from '@mui/material/Grid'
+import Typography from '@mui/material/Typography'
+import LoginForm from './loginForm'
 
 
 
@@ -49,5 +49,5 @@ export default function LoginComponment() {
             }}
         />
     </Grid>
-  );
+  )
 }

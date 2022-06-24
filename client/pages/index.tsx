@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
-import { getUndone, getDone, getAll } from "../apiController/todoController";
-import DropDown from "../components/atoms/dropDown";
-import NavbarLayout from "../components/atoms/navbarLayout";
-import TodoList from "../components/viewTodo/todoList";
-import { TodoModel } from "../models/todoModel";
-import { ViewType } from "../models/viewType";
+import { useState, useEffect } from "react"
+import { getUndone, getDone, getAll } from "../services/api/todoController"
+import DropDown from "../components/atoms/dropDown"
+import NavbarLayout from "../components/atoms/navbarLayout"
+import TodoList from "../components/viewTodo/todoList"
+import { TodoModel } from "../models/todoModel"
+import { ViewType } from "../models/viewType"
 
 async function getData(type: ViewType): Promise<TodoModel[]> {
     if (type == ViewType.VIEW_ALL) {

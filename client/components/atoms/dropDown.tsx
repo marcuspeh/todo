@@ -1,6 +1,6 @@
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
-import React from 'react';
-import { ViewType } from '../../models/viewType';
+import React from 'react'
+import { ViewType } from '../../models/viewType'
 
 interface Props {
     value: ViewType
