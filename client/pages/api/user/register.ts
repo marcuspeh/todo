@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import customAxios from '../../../utilities/customAxios';
-import { encryptPassword } from '../../../apiController/helper/rsaHelper';
+import customAxios from '../../../utilities/customAxios'
+import { encryptPassword } from '../../../apiController/helper/rsaHelper'
 
 type Data = {
   name: string

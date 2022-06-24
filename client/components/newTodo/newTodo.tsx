@@ -1,7 +1,7 @@
-import { Box, Button, Alert } from '@mui/material';
-import React, { useState } from 'react';
-import { createNewTodo } from '../../apiController/todoController';
-import UserInput from '../atoms/userInput';
+import { Box, Button, Alert } from '@mui/material'
+import React, { useRef, useState } from 'react'
+import { createNewTodo } from '../../services/api/todoController'
+import UserInput from '../atoms/userInput'
 
 
 const NewTodo: React.FC = (): JSX.Element => {
@@ -9,7 +9,8 @@ const NewTodo: React.FC = (): JSX.Element => {
     const [inputTitle, setInputTitle] = useState("")
     const [bodyError, setBodyError] = useState("")
     const [titleError, setTitleError] = useState("")
-    const [bannerMessage, setBannerMessage] = useState("")
+    const [errorBannerMessage, setErrorBannerMessage] = useState("")
+    const [successBannerMessage, setSuccessBannerMessage] = useState("")
 
     function onTitleInputChange(e: any): void {
         if (e.target.value) {
@@ -45,18 +46,21 @@ const NewTodo: React.FC = (): JSX.Element => {
         if (isValid) {
             const result = await createNewTodo(inputTitle, inputBody)
             if (result.isSuccess) {
-                setBannerMessage("Todo added.")
+                setSuccessBannerMessage("Todo added.")
                 setInputTitle("")
                 setInputBody("")
+                setErrorBannerMessage("")
             } else {
-                setBannerMessage(result.errorCode)
+                setErrorBannerMessage(result.errorCode)
+                setSuccessBannerMessage("")
             }
         }
-    };
+    }
 
     return (
         <Box component="form" onSubmit={handleSubmit} noValidate  sx={{ mt: 3, mb: 2, px: 3, py: 3, borderRadius: '10px' }} bgcolor="#d4e3fb">
-            {!!(bannerMessage.length !== 0) && <Alert severity="warning">{bannerMessage}</Alert>}
+            {!!(errorBannerMessage.length !== 0) && <Alert severity="warning">{errorBannerMessage}</Alert>}
+            {!!(successBannerMessage.length !== 0) && <Alert severity="success">{successBannerMessage}</Alert>}
             <UserInput label={'Title'} type={'text'} error={titleError} onChange={onTitleInputChange} />
             <UserInput label={'Body'} type={'text'} error={bodyError}  isMultiline={true} onChange={onBodyInputChange} />
             <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} >

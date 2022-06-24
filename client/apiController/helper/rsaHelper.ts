@@ -1,4 +1,4 @@
-import customAxios from "../../utilities/customAxios";
+import customAxios from "../../utilities/customAxios"
 import NodeRSA from 'node-rsa'
 
 export async function encryptPassword(password: string): Promise<string> {

@@ -1,8 +1,8 @@
 import { Button, Card, CardActions, CardContent, Typography } from '@mui/material'
-import React, { useState } from 'react';
-import { deleteTodo, markDone, markUndone, saveTodo } from '../../apiController/todoController';
-import { ViewType } from '../../models/viewType';
-import UserInput from '../atoms/userInput';
+import React, { useState } from 'react'
+import { deleteTodo, markDone, markUndone, saveTodo } from '../../services/api/todoController'
+import { ViewType } from '../../models/viewType'
+import UserInput from '../atoms/userInput'
 
 interface Props {
     title: string

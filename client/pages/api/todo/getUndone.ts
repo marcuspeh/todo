@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import customAxios from '../../../utilities/customAxios';
+import { getHeader } from '../../../apiController/apiUtilities'
+import customAxios from '../../../utilities/customAxios'
 
 export default async function handler(
   req: NextApiRequest,
@@ -10,7 +11,7 @@ export default async function handler(
   }
   
   try {
-    const result = await customAxios.get(process.env.BACKEND_URL + "/todo/getUndone")
+    const result = await customAxios.get(process.env.BACKEND_URL + "/todo/getUndone", {headers: getHeader(req)})
 
     res.status(200).json(result.data)
   } catch (err: any) {

@@ -1,7 +1,7 @@
-import { ResponseModel } from "../models/responseModel"
-import customAxios from "../utilities/customAxios"
-import { extractErrorMessage } from "./helper/apiHelper"
-import { errorHelper } from "./helper/errorHelper"
+import { ResponseModel } from "../../models/responseModel"
+import customAxios from "../../utilities/customAxios"
+import { extractErrorMessage } from "../helper/apiHelper"
+import { errorHelper } from "../helper/errorHelper"
 
 export async function loginUser(email: string, password: string): Promise<ResponseModel> {
     try {

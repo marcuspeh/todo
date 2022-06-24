@@ -3,7 +3,7 @@ import { Box, CssBaseline, Toolbar, IconButton, Typography, Drawer, Divider, Lis
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar'
 import { Menu, ChevronLeft, ChevronRight, FormatListBulleted, Add, Logout } from '@mui/icons-material'
 import { ReactNode, useState } from 'react'
-import { logoutUser } from '../../apiController/userController'
+import { logoutUser } from '../../services/api/userController'
 import Router from 'next/router'
 import TodoCard from '../viewTodo/todoCard'
 import { ViewType } from '../../models/viewType'
