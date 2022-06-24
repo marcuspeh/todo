@@ -13,18 +13,18 @@ const NewTodo: React.FC = (): JSX.Element => {
     const [successBannerMessage, setSuccessBannerMessage] = useState("")
 
     function onTitleInputChange(e: any): void {
+        setInputTitle(e.target.value)
         if (e.target.value) {
             setTitleError("")
-            setInputTitle(e.target.value)
         } else {
             setTitleError("Title is required")
         }
     }
 
     function onBodyInputChange(e: any): void {
+        setInputBody(e.target.value)
         if (e.target.value) {
             setBodyError("")
-            setInputBody(e.target.value)
         } else {
             setBodyError("Body is required")
         }
